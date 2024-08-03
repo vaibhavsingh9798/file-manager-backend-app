@@ -1,0 +1,17 @@
+{
+  "name": "file-manager-backend-app",
+  "version": "1.0.0",
+  "description": "manage folder and file ",
+  "main": "index.js",
+  "scripts": {
+    "dev":" node src/index.js" 
+  },
+  "author": "vaibhav",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
