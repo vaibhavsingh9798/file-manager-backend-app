@@ -2,8 +2,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const ApiError = require('../utils/ApiError')
-const  {User}  = require('../db');
-const { where } = require('sequelize');
+const  {User}  = require('../models')
 const ApiResponse = require('../utils/ApiResponse');
 const asyncHnadler = require('../utils/asyncHandler');
 
