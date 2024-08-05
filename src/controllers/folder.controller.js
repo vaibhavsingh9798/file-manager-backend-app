@@ -1,13 +1,29 @@
-
+const fs = require('fs');
+const path = require('path');
 const { Folder } = require('../models');
 const ApiError = require('../utils/ApiError')
-const  {User}  = require('../models')
 const ApiResponse = require('../utils/ApiResponse');
 const asyncHnadler = require('../utils/asyncHandler');
 
+const BASE_DIR = path.join(__dirname, '..', 'user_folders');
+
 exports.createFolder = asyncHnadler(async (req,res) => {
 
-    const folder = await Folder.create({ ...req.body, userId: req.user.id });
+    const { name } = req.body;
+    const userFolderPath = path.join(BASE_DIR, req.user.id.toString());
+
+    if (!fs.existsSync(userFolderPath)) {
+      fs.mkdirSync(userFolderPath);
+    }
+
+    const folderPath = path.join(userFolderPath, name);
+
+    if (fs.existsSync(folderPath)) {
+      throw new ApiError(400,'Folder already exists')
+    }
+
+    fs.mkdirSync(folderPath);
+    const folder = await Folder.create({ name, userId: req.user.id });
     if(!folder){
         throw new ApiError(400,'Something wrong while creating the folder') 
     }

@@ -18,6 +18,10 @@ const File = sequelize.define('File', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  location:{
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   userId: {
     type: DataTypes.INTEGER,
     references: {
@@ -30,6 +34,14 @@ const File = sequelize.define('File', {
     references: {
       model: 'Folders',
       key: 'id',
+    },
+  },
+  subfolderId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Subfolders',
+      key: 'id',
+      allowNull: true,
     },
   },
 });

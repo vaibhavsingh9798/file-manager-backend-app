@@ -17,7 +17,7 @@ const sequelize = new Sequelize(PGDATABASE,PGUSER,PGPASSWORD,{
 
 
 
-sequelize.sync({force:true})
+sequelize.sync()
   .then(() => {
     console.log('Database & tables created!');
   })
